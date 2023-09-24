@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple HTML with Button</title>
+</head>
+<body>
+  <button id="sendRequest1">Send Request</button>
+  <button id="sendRequest2">Send Request</button>
+  <button id="sendRequest3">Send Request</button>
+  <button id="sendRequest4">Send Request</button>
+  <button id="sendRequest5">Send Request</button>
+  <script>
+    document.getElementById('sendRequest1').addEventListener('click', function() {
+      
+      fetch('http://localhost:8080/dishes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: 'test', price: 30.5, weight: 4500 })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    });
+    document.getElementById('sendRequest2').addEventListener('click', function() {
+      
+      fetch('http://localhost:8080/dish/2', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    });
+    document.getElementById('sendRequest3').addEventListener('click', function() {
+      
+      fetch('http://localhost:8080/dishes', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    });
+    document.getElementById('sendRequest4').addEventListener('click', function() {
+      
+      fetch('http://localhost:8080/dish/1', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: 'test', weight: 4500 })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    });
+    document.getElementById('sendRequest5').addEventListener('click', function() {
+      
+      fetch('http://localhost:8080/dishes/average_price', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>
